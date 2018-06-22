@@ -20,7 +20,7 @@ fun onlogin(event : PlayerLoggedInEvent){
         val id = event.player.getUniqueID()
         for ( name:String in BanHammer.bans )
                 if ( id.toString() == name ){
-                    if (FMLCommonHandler.instance().getEffectiveSide().isServer()){
+                    if (FMLCommonHandler.instance().getSide().isServer()){
                     	event.player.setDead()
                         var playername : String? = null
                         for (activename in MinecraftServer.getServer().getAllUsernames()) {
