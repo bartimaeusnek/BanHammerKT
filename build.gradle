@@ -38,13 +38,15 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 version = "${config.version}"
-group= "bartimaeusnek."+"${config.modid}" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "${config.modid}"
+group= "bartimaeusnek."+"${config.modname}" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "${config.modname}"
 
 minecraft {
-    version = "1.7.10-10.13.4.1614-1.7.10"
+    version = "1.7.10-10.13.4.1614-1.7.10"  
     runDir = "eclipse"
     mappings = "stable_12"
+    
+    
 }
 
 dependencies {
@@ -73,9 +75,9 @@ processResources
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-                
+        
         // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'version':project.version, 'mcversion':project.minecraft.version, 'modid':"${config.modid}", 'modname':"${config.modname}"
     }
         
     // copy everything else, thats not the mcmod.info
@@ -84,15 +86,14 @@ processResources
     }
 }
 
-shadowJar() {
+shadowJar {
     dependencies {
         include(dependency("org.jetbrains.kotlin:kotlin-stdlib"))
     }
-    classifier '' // Replace the default JAR
 }
 
-reobf {
-    shadowJar {} // Reobfuscate the shadowed JAR
+tasks.withType(JavaCompile) {
+    options.compilerArgs.addAll(['-Xlint:unchecked', '-Xlint:deprecation'])
 }
 
 task signJar(dependsOn: 'reobf'){

@@ -22,10 +22,11 @@ import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.management.UserListBansEntry
 
-@Mod(modid = BanHammer.Companion.MODID, name = BanHammer.MODID, version = BanHammer.Companion.VERSION, acceptableRemoteVersions = "*")
+@Mod(modid = BanHammer.Companion.MODID, name = BanHammer.MODNAME, version = BanHammer.Companion.VERSION, acceptableRemoteVersions = "*")
 class BanHammer {
      companion object {
-         final const val MODID: String = "BanHammerKT"
+         final const val MODID: String = "BanHammerJ"
+         final const val MODNAME: String = "BanHammerKT"
          final const val VERSION: String = "0.0.1"
          final val logger : Logger = LogManager.getLogger(MODID)
          var bans:ArrayList<String> = ArrayList<String>()
@@ -36,22 +37,4 @@ class BanHammer {
 		BanHammer.bans = BanLoader().loadBans(event)
         FMLCommonHandler.instance().bus().register(ktEventHandler())
     }
-    
-   /* @SubscribeEvent
-    fun onlogin(event: PlayerLoggedInEvent)
-    {
-        val id : UUID = (event.player as net.minecraft.entity.Entity).getUniqueID()
-            for ( name:String in bans )
-                if ( id.toString() == name ){
-                    if (FMLCommonHandler.instance().getEffectiveSide().isClient())
-                        throw RuntimeException("You have been banned from all Modpack's Servers")
-                    else if (FMLCommonHandler.instance().getEffectiveSide().isServer()){
-                    event.player.setDead()
-                    val gameprofile : GameProfile = GameProfile(event.player.getUniqueID(),null)
-                    val userlistbansentry : UserListBansEntry = UserListBansEntry(gameprofile, null, "BanHammerModpackBan", null, null)
-                    MinecraftServer.getServer().getConfigurationManager().getBannedPlayers().addEntry(userlistbansentry)
-                    }
-                } 
-    }
- */
 }

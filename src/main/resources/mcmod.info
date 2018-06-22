@@ -1,7 +1,7 @@
 [
 {
-  "modid": "BanHammerKT",
-  "name": "BanHammerKT",
+  "modid": "${modid}",
+  "name": "${modname}",
   "description": "A modpack ban written in Kotlin.",
   "version": "${version}",
   "mcversion": "${mcversion}",
