@@ -1,0 +1,16 @@
+[
+{
+  "modid": "BanHammerKT",
+  "name": "BanHammerKT",
+  "description": "A modpack ban written in Kotlin.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["bartimaeusnek"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
